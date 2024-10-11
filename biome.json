@@ -1,0 +1,28 @@
+{
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"attributePosition": "multiline"
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "single",
+			"semicolons": "always",
+			"trailingCommas": "none",
+			"arrowParentheses": "asNeeded",
+			"bracketSameLine": true
+		},
+		"globals": ["$", "_"]
+	},
+	"linter": {
+		"enabled": true
+	},
+	"json": {
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": true
+		}
+	}
+}
