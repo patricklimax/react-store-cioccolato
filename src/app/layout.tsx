@@ -3,6 +3,7 @@ import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import Footer from '../components/footer';
 import Header from '../components/header';
+import { ThemeProvider } from './providers/theme-provider';
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -22,13 +23,21 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='pt-BR'>
+		<html
+			lang='pt-BR'
+			suppressHydrationWarning>
 			<body className={`${inter} antialiased`}>
-				<div className='max-w-[88rem] mx-auto min-h-screen'>
-					<Header />
-					<main className='max-w-7xl mx-auto'>{children}</main>
-					<Footer />
-				</div>
+				<ThemeProvider
+					attribute='class'
+					defaultTheme='system'
+					enableSystem
+					disableTransitionOnChange>
+					<div className='max-w-[88rem] mx-auto min-h-screen'>
+						<Header />
+						<main className='max-w-7xl mx-auto'>{children}</main>
+						<Footer />
+					</div>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ThemeToggle from './theme-toggle';
 import { Button } from './ui/button';
 import {
 	Sheet,
@@ -80,9 +81,7 @@ const Header = () => {
 			</Link>
 
 			<div className='flex gap-4'>
-				<Button size='icon'>
-					<PaletteIcon />
-				</Button>
+				<ThemeToggle />
 				<Button size='icon'>
 					<ShoppingCartIcon />
 				</Button>
