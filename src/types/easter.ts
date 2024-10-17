@@ -1,4 +1,4 @@
-export type Cookie = {
+export type Easter = {
   id: number;
   name: string;
   category: string;
@@ -10,7 +10,5 @@ export type Cookie = {
   mostRequest: boolean;
   newProduct: boolean;
 
-  weight: number;
-  batter: string[];
-  filling: string[];
+  casca: string[];
 };

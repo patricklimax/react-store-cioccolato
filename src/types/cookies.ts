@@ -1,4 +1,4 @@
-export type Icecream = {
+export type Cookie = {
   id: number;
   name: string;
   category: string;
@@ -10,9 +10,7 @@ export type Icecream = {
   mostRequest: boolean;
   newProduct: boolean;
 
-  qFlavors: number;
-  flavors: string[];
-
-  cobertura: string;
-  plus: string[];
+  peso: number;
+  massa: string[];
+  recheio: string[];
 };

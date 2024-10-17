@@ -1,4 +1,4 @@
-export type Donut = {
+export type Brigadier = {
   id: number;
   name: string;
   category: string;
@@ -10,9 +10,6 @@ export type Donut = {
   mostRequest: boolean;
   newProduct: boolean;
 
-  batter: string;
-
-  qFlavors: number;
-  flavors: string[];
-  plus: string[];
+  qdeSabores: number;
+  sabores: string[];
 };

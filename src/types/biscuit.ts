@@ -1,4 +1,4 @@
-export type Easter = {
+export type Biscuit = {
   id: number;
   name: string;
   category: string;
@@ -10,5 +10,7 @@ export type Easter = {
   mostRequest: boolean;
   newProduct: boolean;
 
-  bark: string[];
+  peso: number;
+  qdeSabores: number;
+  sabores: string[];
 };

@@ -1,4 +1,4 @@
-export type Biscuit = {
+export type Icecream = {
   id: number;
   name: string;
   category: string;
@@ -10,7 +10,9 @@ export type Biscuit = {
   mostRequest: boolean;
   newProduct: boolean;
 
-  weight: number;
-  qFlavors: number;
-  flavors: string[];
+  qdeSabores: number;
+  sabores: string[];
+
+  cobertura: string;
+  plus: string[];
 };
