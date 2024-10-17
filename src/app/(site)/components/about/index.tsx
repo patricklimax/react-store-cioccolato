@@ -1,5 +1,5 @@
-import { productsCard } from '@/app/data/products-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { productCategoryCard } from '@/data/product-category-card';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 
@@ -21,19 +21,21 @@ const AboutEnterprise = () => {
 
 			<div className='flex flex-col gap-4 md:flex-row'>
 				<div className='grid grid-cols-2 md:grid-cols-3 gap-4 flex-1'>
-					{productsCard.map(item => (
-						<div
-							key={item.id}
-							className='rounded-md relative h-48 w-48'>
-							<Image
-								src={item.imageUrl}
-								alt={item.name}
-								fill
-								objectFit='cover'
-								className='rounded-md'
-							/>
-						</div>
-					))}
+					{productCategoryCard
+						.filter(item => item.isCard === true)
+						.map(item => (
+							<div
+								key={item.id}
+								className='rounded-md relative h-48 w-48'>
+								<Image
+									src={item.imageUrl}
+									alt={item.name}
+									fill
+									objectFit='cover'
+									className='rounded-md'
+								/>
+							</div>
+						))}
 				</div>
 				<div className='flex flex-col gap-4 bg-secondary flex-1 p-2 rounded-md'>
 					<div className='rounded-md relative h-16'>

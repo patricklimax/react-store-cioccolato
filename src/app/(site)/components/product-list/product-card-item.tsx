@@ -1,17 +1,17 @@
-import type { ProductCard } from '@/app/types/product-card-item';
+import type { ProductCategory } from '@/types/product-category-card';
 import Image from 'next/image';
 
-type ProdutoProps = {
-	produto: ProductCard;
+type ProductProps = {
+	product: ProductCategory;
 };
 
-const ProductCardItem = ({ produto }: ProdutoProps) => {
+const ProductCardItem = ({ product }: ProductProps) => {
 	return (
 		<div className='flex flex-col gap-4 rounded-md p-4 bg-primary'>
 			<div className='rounded-md relative h-[200px] '>
 				<Image
-					src={produto.imageUrl}
-					alt={produto.name}
+					src={product.imageUrl}
+					alt={product.name}
 					fill
 					objectFit='cover'
 					className='rounded-md'
@@ -19,10 +19,10 @@ const ProductCardItem = ({ produto }: ProdutoProps) => {
 			</div>
 			<div className='flex flex-col gap-4 flex-1'>
 				<div className='w-full text-center rounded-md bg-muted py-2 font-semibold'>
-					{produto.name}
+					{product.name}
 				</div>
 				<div className='w-full text-center text-sm text-background'>
-					{produto.description}
+					{product.description}
 				</div>
 			</div>
 		</div>

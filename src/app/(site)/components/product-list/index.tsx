@@ -1,4 +1,3 @@
-import { productsCard } from '@/app/data/products-card';
 import { Button } from '@/components/ui/button';
 import {
 	Carousel,
@@ -7,6 +6,7 @@ import {
 	CarouselNext,
 	CarouselPrevious
 } from '@/components/ui/carousel';
+import { productCategoryCard } from '@/data/product-category-card';
 import Link from 'next/link';
 import ProductCardItem from './product-card-item';
 
@@ -19,13 +19,15 @@ const ProductList = () => {
 			</h1>
 			<Carousel className='w-9/12'>
 				<CarouselContent className='-ml-1'>
-					{productsCard.map(item => (
-						<CarouselItem
-							key={item.id}
-							className='flex pl-2 md:basis-1/2 lg:basis-1/3'>
-							<ProductCardItem produto={item} />
-						</CarouselItem>
-					))}
+					{productCategoryCard
+						.filter(product => product.isCard === true)
+						.map(product => (
+							<CarouselItem
+								key={product.id}
+								className='flex pl-2 md:basis-1/2 lg:basis-1/3'>
+								<ProductCardItem product={product} />
+							</CarouselItem>
+						))}
 				</CarouselContent>
 				<CarouselPrevious />
 				<CarouselNext />
