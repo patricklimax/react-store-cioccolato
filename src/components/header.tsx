@@ -1,12 +1,11 @@
 import {
 	EllipsisVerticalIcon,
 	HomeIcon,
-	PaletteIcon,
-	ShoppingBasketIcon,
-	ShoppingCartIcon
+	ShoppingBasketIcon
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CartSideBar from './cart/cart';
 import ThemeToggle from './theme-toggle';
 import { Button } from './ui/button';
 import {
@@ -57,7 +56,7 @@ const Header = () => {
 							</Link>
 						</SheetClose>
 						<SheetClose asChild>
-							<Link href='/pedidos'>
+							<Link href='/menu'>
 								<Button
 									variant='outline'
 									className='w-full justify-start rounded gap-2 items-center'>
@@ -82,9 +81,7 @@ const Header = () => {
 
 			<div className='flex gap-4'>
 				<ThemeToggle />
-				<Button size='icon'>
-					<ShoppingCartIcon />
-				</Button>
+				<CartSideBar />
 			</div>
 		</header>
 	);
