@@ -3,6 +3,7 @@ import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/providers/theme-provider';
 
 const inter = Inter({
@@ -37,6 +38,8 @@ export default function RootLayout({
 						<main className='max-w-7xl mx-auto'>{children}</main>
 						<Footer />
 					</div>
+
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>

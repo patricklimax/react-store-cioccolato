@@ -1,7 +1,10 @@
+'use client';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/hooks/use-toast';
 import type { GeneralProduct } from '@/types/product';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -11,6 +14,7 @@ interface ProductItem {
 }
 
 const CookieProduct = ({ product }: ProductItem) => {
+	const { toast } = useToast();
 	const [selectedMassa, setSelectedMassa] = useState<string[]>([]);
 	const [selectedRecheio, setSelectedRecheio] = useState<string[]>([]);
 
@@ -45,6 +49,18 @@ const CookieProduct = ({ product }: ProductItem) => {
 	const isCheckedRecheio = (sabor: string) => selectedRecheio.includes(sabor);
 	const isDisabledRecheio = (sabor: string, product: GeneralProduct) =>
 		!isCheckedRecheio(sabor) && selectedRecheio.length >= product.qdeRecheio;
+
+	//adicionar ao carrinho
+	const addProductToCart = () => {
+		// Todo: adicionar item ao carrinho
+
+		//toast message
+		toast({
+			title: 'Adicionado ao Carrinho',
+			description: product.name,
+			action: <ToastAction altText='fechar'>Fechar</ToastAction>
+		});
+	};
 	return (
 		<div className='flex flex-col gap-4'>
 			<div className='flex flex-col gap-4 md:flex-row'>
@@ -140,6 +156,7 @@ const CookieProduct = ({ product }: ProductItem) => {
 
 			<div className='flex justify-end'>
 				<Button
+					onClick={addProductToCart}
 					type='button'
 					className='w-full md:w-1/4'>
 					Adicionar ao Carrinho

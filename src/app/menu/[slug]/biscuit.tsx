@@ -1,7 +1,10 @@
+'use client';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/hooks/use-toast';
 import type { GeneralProduct } from '@/types/product';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -11,6 +14,7 @@ interface ProductItem {
 }
 
 const BiscuitProduct = ({ product }: ProductItem) => {
+	const { toast } = useToast();
 	const [selectedFlavors, setSelectedFlavors] = useState<string[]>([]);
 	const sabores = product.sabores;
 
@@ -28,6 +32,18 @@ const BiscuitProduct = ({ product }: ProductItem) => {
 	const isChecked = (sabor: string) => selectedFlavors.includes(sabor);
 	const isDisabled = (sabor: string, product: GeneralProduct) =>
 		!isChecked(sabor) && selectedFlavors.length >= product.qdeSabores;
+
+	//adicionar ao carrinho
+	const addProductToCart = () => {
+		// Todo: adicionar item ao carrinho
+
+		//toast message
+		toast({
+			title: 'Adicionado ao Carrinho',
+			description: product.name,
+			action: <ToastAction altText='fechar'>Fechar</ToastAction>
+		});
+	};
 
 	return (
 		<div className='flex flex-col gap-4'>
@@ -94,6 +110,7 @@ const BiscuitProduct = ({ product }: ProductItem) => {
 
 			<div className='flex justify-end'>
 				<Button
+					onClick={addProductToCart}
 					type='button'
 					className='w-full md:w-1/4'>
 					Adicionar ao Carrinho
