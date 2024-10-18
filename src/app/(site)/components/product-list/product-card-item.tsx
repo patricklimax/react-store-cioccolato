@@ -1,14 +1,14 @@
-import type { ProductCategory } from '@/types/product-category-card';
+import type { ProductCategoryCard } from '@/types/product-category-card';
 import Image from 'next/image';
 
 type ProductProps = {
-	product: ProductCategory;
+	product: ProductCategoryCard;
 };
 
 const ProductCardItem = ({ product }: ProductProps) => {
 	return (
 		<div className='flex flex-col gap-4 rounded-md p-4 bg-primary'>
-			<div className='rounded-md relative h-[200px] '>
+			<div className='rounded-md relative h-52'>
 				<Image
 					src={product.imageUrl}
 					alt={product.name}

@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const HeroPage = () => {
 	return (
@@ -7,7 +8,9 @@ const HeroPage = () => {
 				Compartilhando momentos <span className='text-primary'> doces</span> e{' '}
 				<span className='text-primary'> especiais</span> com você.
 			</p>
-			<Button>Já quero comprar</Button>
+			<Link href='/menu'>
+				<Button type='button'>Já quero comprar</Button>
+			</Link>
 		</section>
 	);
 };

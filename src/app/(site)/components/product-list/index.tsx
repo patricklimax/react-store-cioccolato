@@ -34,9 +34,9 @@ const ProductList = () => {
 			</Carousel>
 			<div className='flex flex-col items-center gap-4 mt-4'>
 				<p>Para fazer seu pedido, clique no botão abaixo.</p>
-				<Button>
-					<Link href='/pedidos'>Ir para página de Pedidos</Link>
-				</Button>
+				<Link href='/menu'>
+					<Button type='button'>Ir para Menu</Button>
+				</Link>
 			</div>
 		</section>
 	);
