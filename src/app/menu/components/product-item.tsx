@@ -10,24 +10,18 @@ type Props = {
 };
 
 const ProductItem = ({ product }: Props) => {
-	// const handlerAddButton = () => {
-	// 	adicionar o item no store
-	// 	toast({
-	// 		title: 'Produto adicionado ao carrinho.',
-	// 		description: item.name,
-	// 		action: <ToastAction altText='fechar'>Fechar</ToastAction>
-	// 	});
-	// };
-
 	return (
 		<div className='flex flex-col gap-2 bg-secondary rounded-md p-2'>
-			<div className='w-full h-[250px] rounded-md overflow-hidden p-1'>
-				<img
+			<div className='rounded-md relative h-[250px] w-[280px] mx-auto '>
+				<Image
 					src={product.imageUrl}
 					alt={product.name}
-					className='w-full h-[250px] object-cover rounded-md'
+					fill
+					objectFit='cover'
+					className='rounded-md'
 				/>
 			</div>
+
 			<div className='flex flex-col gap-2 p-1 justify-between'>
 				<div className='w-full text-center rounded-md bg-background py-2 font-semibold'>
 					{product.name}
@@ -36,22 +30,40 @@ const ProductItem = ({ product }: Props) => {
 					<p className='mb-2'>{product.description}</p>
 					<div className='text-muted-foreground'>
 						{product.sabores.length > 0 && (
-							<div>Sabores: {product.sabores.join(', ')}</div>
+							<div>
+								<span className='font-bold'>Sabores:</span>{' '}
+								{product.sabores.join(', ')}
+							</div>
 						)}
 						{product.massa.length > 0 && (
-							<div>Massa: {product.massa.join(', ')}</div>
+							<div>
+								<span className='font-bold'>Massa:</span>{' '}
+								{product.massa.join(', ')}
+							</div>
 						)}
 						{product.recheio.length > 0 && (
-							<div>Recheio: {product.recheio.join(', ')}</div>
+							<div>
+								<span className='font-bold'>Recheio:</span>{' '}
+								{product.recheio.join(', ')}
+							</div>
 						)}
 						{product.casca.length > 0 && (
-							<div>Casca: {product.casca.join(', ')}</div>
+							<div>
+								<span className='font-bold'>Casca:</span>{' '}
+								{product.casca.join(', ')}
+							</div>
 						)}
 						{product.cobertura.length > 0 && (
-							<div>Cobertura: {product.cobertura.join(', ')}</div>
+							<div>
+								<span className='font-bold'>Cobertura:</span>{' '}
+								{product.cobertura.join(', ')}
+							</div>
 						)}
 						{product.plus.length > 0 && (
-							<div>Adicionais: {product.plus.join(', ')}</div>
+							<div>
+								<span className='font-bold'>Adicionais:</span>{' '}
+								{product.plus.join(', ')}
+							</div>
 						)}
 					</div>
 				</div>
@@ -67,7 +79,7 @@ const ProductItem = ({ product }: Props) => {
 				</div>
 
 				<div className='w-full h-[48px] rounded-md flex items-center justify-center'>
-					<Link href='/pedidos/'>
+					<Link href={`/menu/${product.slug}`}>
 						<Button>Montar meu pedido</Button>
 					</Link>
 				</div>
