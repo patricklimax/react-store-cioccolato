@@ -12,7 +12,7 @@ type Props = {
 const ProductItem = ({ product }: Props) => {
 	return (
 		<div className='flex flex-col gap-2 bg-secondary rounded-md p-2'>
-			<div className='rounded-md relative h-[250px] w-[280px] mx-auto '>
+			<div className='rounded-md relative h-[250px] w-auto '>
 				<Image
 					src={product.imageUrl}
 					alt={product.name}
@@ -74,7 +74,7 @@ const ProductItem = ({ product }: Props) => {
 					</div>
 					<div className='flex items-center justify-center'>
 						<GiftIcon className='text-primary' />
-						<p>R$ {(product.price * 0.98).toFixed(2)}</p>
+						<p>R$ {(product.price * 0.95).toFixed(2)}</p>
 					</div>
 				</div>
 
