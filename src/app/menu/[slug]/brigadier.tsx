@@ -154,7 +154,7 @@ const BrigadierProduct = ({ product }: ProductItem) => {
 				</div>
 			</div>
 
-			<div className='flex justify-end w-full md:w-4/6 mx-auto'>
+			<div className='flex justify-end w-full mx-auto'>
 				<Button
 					onClick={addProductToCart}
 					type='button'

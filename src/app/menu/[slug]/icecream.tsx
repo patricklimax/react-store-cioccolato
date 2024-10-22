@@ -255,7 +255,7 @@ const IcecreamProduct = ({ product }: ProductItem) => {
 				</div>
 			</div>
 
-			<div className='mx-auto flex w-full justify-end'>
+			<div className='flex justify-end w-full mx-auto'>
 				<Button
 					onClick={addProductToCart}
 					type='button'

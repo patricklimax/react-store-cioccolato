@@ -154,7 +154,7 @@ const EasterProduct = ({ product }: ProductItem) => {
 				</div>
 			</div>
 
-			<div className='flex justify-end w-full'>
+			<div className='flex justify-end w-full mx-auto'>
 				<Button
 					onClick={addProductToCart}
 					type='button'
