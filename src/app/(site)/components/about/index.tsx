@@ -20,13 +20,13 @@ const AboutEnterprise = () => {
 			</h1>
 
 			<div className='flex flex-col gap-4 md:flex-row'>
-				<div className='grid grid-cols-2 md:grid-cols-3 gap-4 flex-1'>
+				<div className='grid grid-cols-2 items-center justify-center md:grid-cols-3 gap-4 flex-1'>
 					{productCategoryCard
 						.filter(item => item.isCard === true)
 						.map(item => (
 							<div
 								key={item.id}
-								className='rounded-md relative h-48 w-48'>
+								className='rounded-md relative h-32 md:h-40 lg:h-48 w-full'>
 								<Image
 									src={item.imageUrl}
 									alt={item.name}
