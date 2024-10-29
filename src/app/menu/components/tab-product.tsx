@@ -17,6 +17,11 @@ const TabProducts = async () => {
 
 	const tabs: Tab[] = [
 		{
+			title: 'Todos',
+			value: 'allProducts',
+			products: products.map(item => item)
+		},
+		{
 			title: 'Mais Vendidos',
 			value: 'mostRequest',
 			products: products.filter(product => product.mostRequest === true)
@@ -61,7 +66,7 @@ const TabProducts = async () => {
 	return (
 		<section className='w-full'>
 			<Tabs
-				defaultValue='brigadiers'
+				defaultValue='allProducts'
 				className='w-full'>
 				<TabsList className='w-full gap-2 justify-start overflow-x-auto [&::-webkit-scrollbar]:hidden h-auto p-2'>
 					{productCategoryCard.map(item => (
@@ -92,48 +97,6 @@ const TabProducts = async () => {
 						{tabContent.products.length === 0 && <NoProduct />}
 					</TabsContent>
 				))}
-				{/* {tabContent.products.length === 0 && <ProductEmpty />} */}
-
-				{/* <TabsContent
-					className='border p-2'
-					value='mostRequest'>
-					Produtos Mais vendidos
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='newProduct'>
-					Produtos Novidades
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='brigadiers'>
-					Produtos Brigadeiros
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='biscuits'>
-					Produtos Biscoitinhos
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='cookies'>
-					Produtos Cookies
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='easter'>
-					Produtos Ovos de Colher
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='icecream'>
-					Produtos Sorvetes
-				</TabsContent>
-				<TabsContent
-					className='border p-2'
-					value='donuts'>
-					Produtos Donuts
-				</TabsContent> */}
 			</Tabs>
 		</section>
 	);

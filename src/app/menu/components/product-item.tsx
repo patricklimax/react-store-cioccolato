@@ -12,12 +12,13 @@ type Props = {
 const ProductItem = ({ product }: Props) => {
 	return (
 		<div className='flex flex-col gap-2 bg-secondary rounded-md p-2'>
-			<div className='rounded-md relative h-[250px] w-auto '>
+			<div className='rounded-md relative h-[250px] w-full '>
 				<Image
 					src={product.imageUrl}
 					alt={product.name}
 					fill
-					objectFit='cover'
+					quality={100}
+					sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 					className='rounded-md'
 				/>
 			</div>
