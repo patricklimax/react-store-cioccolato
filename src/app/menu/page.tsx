@@ -1,15 +1,18 @@
 import { Suspense } from 'react';
-import SkeletonLoading from './components/skeleton-loading';
-import TabProducts from './components/tab';
+import TabProducts from './components/tab-product';
+import Loading from './loading';
 
 const MenuPage = () => {
 	return (
 		<section className='p-4'>
 			<h2 className='text-center text-3xl py-4 uppercase font-bold'>
-				Página de Pedidos
+				MENU{' '}
+				<span className='uppercase align-top text-sm text-primary'>
+					onde você faz sua melhor escolha
+				</span>
 			</h2>
 
-			<Suspense fallback={<SkeletonLoading />}>
+			<Suspense fallback={<Loading />}>
 				<TabProducts />
 			</Suspense>
 		</section>
