@@ -9,13 +9,28 @@ type States = {
 type Actions = {
   upSertCartItem: (product: GeneralProduct, quantity: number) => void;
   removeProduct: (id: number) => void;
+
+  loadingCart: () => void;
 };
 
-// const initialState: States = {
-//   cart: [],
-// };
+// salva no localStorage
+const saveLocalStorage = (cart: Cart[]) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cart-doces", JSON.stringify(cart));
+  }
+};
+
+// pega dados do localStorage
+const getLocalStorage = (): Cart[] => {
+  if (typeof window !== "undefined") {
+    const cart = localStorage.getItem("cart-doces");
+    return cart ? JSON.parse(cart) : [];
+  }
+  return [];
+};
+
 export const useCartStore = create<States & Actions>()((set) => ({
-  cart: [],
+  cart: getLocalStorage(),
 
   upSertCartItem: (product, quantity) =>
     set((state) => {
@@ -37,7 +52,7 @@ export const useCartStore = create<States & Actions>()((set) => ({
       if (newCart[productIndex].quantity <= 0) {
         newCart = newCart.filter((item) => item.product.id !== product.id);
       }
-
+      saveLocalStorage(newCart);
       return { ...state, cart: newCart };
     }),
 
@@ -45,4 +60,11 @@ export const useCartStore = create<States & Actions>()((set) => ({
     set((state) => ({
       cart: state.cart.filter((product) => product.product.id !== id),
     })),
+
+  // Função para carregar o carrinho ao inicializar o aplicativo
+  loadingCart: () =>
+    set(() => {
+      const carrinhoSalvo = getLocalStorage();
+      return { cart: carrinhoSalvo };
+    }),
 }));
