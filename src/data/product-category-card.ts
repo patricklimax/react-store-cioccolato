@@ -3,6 +3,15 @@ import type { ProductCategoryCard } from "@/types/product-category-card";
 export const productCategoryCard: ProductCategoryCard[] = [
   {
     id: 1000,
+    name: "Todos",
+    category: "allProducts",
+    isCard: false,
+    description:
+      "Os melhores Donuts você só encontra aqui. Monte seu pedido e viva o sabor do melhor Donut do Mundo.",
+    imageUrl: "/images/products/sabores/donut.jpeg",
+  },
+  {
+    id: 1000,
     name: "Mais Vendidos",
     category: "mostRequest",
     isCard: false,

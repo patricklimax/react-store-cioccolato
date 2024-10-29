@@ -11,6 +11,7 @@ export type GeneralProduct = {
   id: number;
   name: string;
   category: string;
+  slug: string;
   tipo: string;
   description: string;
   imageUrl: string;
@@ -20,11 +21,16 @@ export type GeneralProduct = {
   newProduct: boolean;
 
   peso: number;
-  qdeSabores: number;
   sabores: string[];
+  qdeSabores: number;
   casca: string[];
+  qdeCasca: number;
   massa: string[];
+  qdeMassa: number;
   recheio: string[];
+  qdeRecheio: number;
   cobertura: string[];
+  qdeCobertura: number;
   plus: string[];
+  qdePlus: number;
 };
