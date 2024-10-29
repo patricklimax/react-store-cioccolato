@@ -6,6 +6,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import CartSideBar from './cart/cart';
+import { Logotipo } from './logo';
 import ThemeToggle from './theme-toggle';
 import { Button } from './ui/button';
 import {
@@ -33,15 +34,7 @@ const Header = () => {
 					<SheetHeader>
 						<SheetTitle>
 							<SheetClose asChild>
-								<Link href='/'>
-									<Image
-										src='/images/logo/logo.png'
-										alt='Logo da Empresa'
-										className='w-[180px] h-auto'
-										width={180}
-										height={50}
-									/>
-								</Link>
+								<Logotipo />
 							</SheetClose>
 						</SheetTitle>
 
@@ -69,15 +62,7 @@ const Header = () => {
 				</SheetContent>
 			</Sheet>
 
-			<Link href='/'>
-				<Image
-					src='/images/logo/logo.png'
-					alt='Logo da Empresa'
-					className='w-[180px] h-auto'
-					width={180}
-					height={50}
-				/>
-			</Link>
+			<Logotipo />
 
 			<div className='flex gap-4'>
 				<ThemeToggle />

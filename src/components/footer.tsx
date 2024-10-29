@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import { Logotipo } from './logo';
 
 type LinkProps = {
 	id?: number;
@@ -52,15 +52,7 @@ const Footer = () => {
 	return (
 		<footer className=' max-w-[88rem] mx-auto px-10 border-t'>
 			<div className='flex flex-col md:flex-row gap-4 md:gap-10 py-10'>
-				<Link href='/'>
-					<Image
-						src='/images/logo/logo.png'
-						alt='Logo da Empresa'
-						className='w-[180px] h-auto'
-						width={180}
-						height={50}
-					/>
-				</Link>
+				<Logotipo />
 				<ul className='flex flex-col text-sm font-semibold gap-2'>
 					{links.map(link => (
 						<LinkFooter
