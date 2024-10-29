@@ -19,13 +19,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-export const schema = z.object({
+export const formSchema = z.object({
 	paymentMethod: z.string().min(1, 'Você deve selecionar uma opção')
 });
-
-interface FormData {
-	paymentMethod: string;
-}
 
 const PaymentPage = () => {
 	const router = useRouter();
@@ -34,14 +30,14 @@ const PaymentPage = () => {
 
 	const { pixCode } = usePixStore(state => state);
 
-	const form = useForm<FormData>({
-		resolver: zodResolver(schema),
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
 		defaultValues: {
 			paymentMethod
 		}
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: z.infer<typeof formSchema>) => {
 		setPaymentMethod(data.paymentMethod);
 		saveLocalStoragePaymentMethod();
 		router.push('/cart-checkout/send-order');
