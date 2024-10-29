@@ -58,7 +58,7 @@ Além disso... <br>
 
 A aplicação suporta temas claro e escuro, com a funcionalidade de alternância de tema gerida por **Next Themes**.<br>
 
-# 📦 Instalação e Configuração
+## 📦 Instalação e Configuração
 
 ## 🚀 Como Executar o Projeto
 
@@ -68,111 +68,19 @@ A aplicação suporta temas claro e escuro, com a funcionalidade de alternância
    cd react-store-cioccolato
 
 2. **Instale as dependências:**
-    ```npm install
+    ```bash
+    npm install
 
 3. **Execute o projeto:**
-    ```npm run dev
+     ```bash
+     npm run dev
 
 **Acesse o projeto no navegador em http://localhost:3000**
 
 
-# 🤝 Contribuições
+## 🤝 Contribuições
 Contribuições são bem-vindas! Por favor, abra um pull request ou reporte issues para sugestões de melhorias ou correções. <br>
 
 
-# 📄 Licença
+## 📄 Licença
 Este projeto é licenciado sob a MIT License.
-
-
-
-
-
-
-
-
-
-
-
-## Desenho da Aplicação
-
-Site
--Home
--Um pouco das Delícias
--História da Empresa
--Parceiros
--Localização e contato
-
-### Produtos
-
-### Brigadeiros:
-
-id
-name
-category: gourmet | tradicional
-quantity: 12 | 25 | 50 | 100
-description
-flavors
-qdeFlavors
-imgUrl
-
-### Ovos de Pascoa
-
-Biscoitinhos
-Cookies
-Sorvetes
-donuts
-
-Página de Produtos/Pedidos
-
-#Menu
--Mesmo para site e loja
--Menu de abrir com as oções home e fazer pedidos
--Botão tema de cores
--botão do carinho
-
-#Carrinho
--detalhes dos produtos escolhidos
--com quantidade, sabores, etc
--mostra valor total por item
--mostra valor total do carrinho
--botão de continuar comprando
--botão de finalizar compra
--redireciona para página de checkout
-
--opção de entrega: cliente paga o entrega
-
-#Páginde detalhes do produto
--abre mostrando os detalhes do produto
--cliente seleciona os sabores
--adiciona produto ao carrinho
--abre carrinho com resumo do pedido e opção de finalizar compra/continuar comprando
-
-#Página de Checkout
--Resumo do pedido com imagem e demais itens
--etapas do checkout
-identificação do cliente
-endereço
-forma de pagamento (pix, dinheiro, débito, crédito,)
-em caso de dinheiro, informar o valor para troco
-mensagem: pagamento de 50% para confirmação do pedido e do pagamento do frente
-enviar pedido para whatsapp
-
-na tela de cadastro selecionar primeiro o produto
-
-remodelar site
-
-criar página de checkout
---criar três etapas
-  -nome e telefone
-  -forma de entrega e endereço completo
-  -forma de pagamento: 50% pix, gerar qr code: resto na entrega
-  inserir mensagem de compartilhamento de dados e botão de enviar pedido
-  após isso, informar que o pedido será confirmado mediante envio de comprovante de pagamento
-  acompanhar via whatsapp
-  
-criar página do carrinho -  mostrar detalhes dos produtos
-No cart menu, ver produtos sem muitos delalhes
-criar opção de editar pedido
-
-
-Ao clicar no botão Fazer pedido, você confirma que leu, entendeu e aceita nossos Termos de Uso, Termos de Venda e Política de Devolução e reconhece que leu a Política de Privacidade da Medusa Store.
