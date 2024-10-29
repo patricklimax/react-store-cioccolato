@@ -10,6 +10,8 @@ import type { GeneralProduct } from '@/types/product';
 import { GiftIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
+import ButtonAddItemCart from './button-add-item-cart';
+import InfoProduct from './info-product';
 
 interface ProductItem {
 	product: GeneralProduct;
@@ -22,19 +24,19 @@ const EasterProduct = ({ product }: ProductItem) => {
 	const { upSertCartItem } = useCartStore(state => state);
 
 	const handleCheckboxChangeCasca = (
-		sabor: string,
+		casca: string,
 		product: GeneralProduct
 	) => {
-		if (selectedCasca.includes(sabor)) {
-			setSelectedCasca(selectedCasca.filter(item => item !== sabor));
+		if (selectedCasca.includes(casca)) {
+			setSelectedCasca(selectedCasca.filter(item => item !== casca));
 		} else if (selectedCasca.length < product.qdeCasca) {
-			setSelectedCasca([...selectedCasca, sabor]);
+			setSelectedCasca([...selectedCasca, casca]);
 		}
 	};
 
-	const isCheckedCasca = (sabor: string) => selectedCasca.includes(sabor);
-	const isDisabledCasca = (sabor: string, product: GeneralProduct) =>
-		!isCheckedCasca(sabor) && selectedCasca.length >= product.qdeCasca;
+	const isCheckedCasca = (casca: string) => selectedCasca.includes(casca);
+	const isDisabledCasca = (casca: string, product: GeneralProduct) =>
+		!isCheckedCasca(casca) && selectedCasca.length >= product.qdeCasca;
 
 	//adicionar ao carrinho
 	const addProductToCart = () => {
@@ -51,73 +53,27 @@ const EasterProduct = ({ product }: ProductItem) => {
 				massa: [],
 				casca: selectedCasca
 			};
-
 			upSertCartItem(newProduct, 1);
-
+			toast({
+				title: 'Adicionado ao Carrinho',
+				description: product.name,
+				action: <ToastAction altText='fechar'>Fechar</ToastAction>
+			});
 			setSelectedCasca([]);
 		} else {
-			alert('Selecione pelo menos um sabor, uma cobertura e um adicional.');
+			toast({
+				variant: 'destructive',
+				title: 'Selecione sua casca.',
+				description: product.name,
+				action: <ToastAction altText='fechar'>Fechar</ToastAction>
+			});
 		}
-
-		// upSertCartItem(product, 1);
-		//toast message
-		toast({
-			title: 'Adicionado ao Carrinho',
-			description: product.name,
-			action: <ToastAction altText='fechar'>Fechar</ToastAction>
-		});
 	};
 
 	return (
 		<div className='flex flex-col gap-4'>
 			<div className='flex flex-col gap-4 w-full'>
-				<div className='flex w-full flex-col items-center gap-4 rounded-md bg-secondary p-4 md:flex-row'>
-					<div className='relative h-64 w-full rounded-md md:w-1/4'>
-						<Image
-							src={product.imageUrl}
-							alt={product.name}
-							fill
-							sizes='(max-width: 100%) 100%, (max-width: 16rem) 16rem, 16rem'
-							objectFit='cover'
-							className='rounded-md'
-						/>
-					</div>
-					<div className='flex w-full flex-col gap-4 md:w-1/2'>
-						<p className='font-semibold'>{product.name}</p>
-						<p className='text-sm font-medium text-primary'>
-							{product.description}
-						</p>
-						<div className='flex flex-col gap-1'>
-							<h3 className='text-start text-xs font-bold'>Tags</h3>
-							<div className='flex items-center gap-2 md:flex-wrap'>
-								<Badge>#gourmet</Badge>
-								<Badge>#maisVendido</Badge>
-								<Badge>#novidade</Badge>
-							</div>
-						</div>
-						<div className='mt-4 flex items-center justify-center gap-8'>
-							<p className='text-sm font-bold text-muted-foreground line-through'>
-								R$ {product.price.toFixed(2)}
-							</p>
-							<div className='flex items-center justify-center'>
-								<GiftIcon className='text-primary' />
-								<p className='text-2xl font-bold'>
-									R$ {(product.price * 0.95).toFixed(2)}
-								</p>
-							</div>
-						</div>
-					</div>
-					<div className='relative h-64 w-full rounded-md md:w-1/4 hidden md:block'>
-						<Image
-							src={product.imageUrl}
-							alt={product.name}
-							fill
-							sizes='(max-width: 100%) 100%, (max-width: 16rem) 16rem, 16rem'
-							objectFit='cover'
-							className='rounded-md'
-						/>
-					</div>
-				</div>
+				<InfoProduct product={product} />
 
 				<div className='w-full bg-secondary flex flex-col md:flex-row p-4 gap-4 rounded-md'>
 					{cascas.length > 0 && (
@@ -155,12 +111,7 @@ const EasterProduct = ({ product }: ProductItem) => {
 			</div>
 
 			<div className='flex justify-end w-full mx-auto'>
-				<Button
-					onClick={addProductToCart}
-					type='button'
-					className='w-full md:w-1/4'>
-					Adicionar ao Carrinho
-				</Button>
+				<ButtonAddItemCart onClick={addProductToCart} />
 			</div>
 		</div>
 	);

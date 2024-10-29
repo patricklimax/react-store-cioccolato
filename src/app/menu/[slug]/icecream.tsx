@@ -1,15 +1,13 @@
 'use client';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/hooks/use-toast';
 import { useCartStore } from '@/stores/cart-store';
 import type { GeneralProduct } from '@/types/product';
-import { GiftIcon } from 'lucide-react';
-import Image from 'next/image';
 import { useState } from 'react';
+import ButtonAddItemCart from './button-add-item-cart';
+import InfoProduct from './info-product';
 
 interface ProductItem {
 	product: GeneralProduct;
@@ -39,32 +37,34 @@ const IcecreamProduct = ({ product }: ProductItem) => {
 
 	const coberturas = product.cobertura;
 	const handleCheckboxChangeCoberturas = (
-		sabor: string,
+		cobertura: string,
 		product: GeneralProduct
 	) => {
-		if (selectedCoberturas.includes(sabor)) {
-			setSelectedCoberturas(selectedCoberturas.filter(item => item !== sabor));
+		if (selectedCoberturas.includes(cobertura)) {
+			setSelectedCoberturas(
+				selectedCoberturas.filter(item => item !== cobertura)
+			);
 		} else if (selectedCoberturas.length < product.qdeCobertura) {
-			setSelectedCoberturas([...selectedCoberturas, sabor]);
+			setSelectedCoberturas([...selectedCoberturas, cobertura]);
 		}
 	};
-	const isCheckedCoberturas = (sabor: string) =>
-		selectedCoberturas.includes(sabor);
-	const isDisabledCoberturas = (sabor: string, product: GeneralProduct) =>
-		!isCheckedCoberturas(sabor) &&
+	const isCheckedCoberturas = (cobertura: string) =>
+		selectedCoberturas.includes(cobertura);
+	const isDisabledCoberturas = (cobertura: string, product: GeneralProduct) =>
+		!isCheckedCoberturas(cobertura) &&
 		selectedCoberturas.length >= product.qdeCobertura;
 
 	const plus = product.plus;
-	const handleCheckboxChangePlus = (sabor: string, product: GeneralProduct) => {
-		if (selectedPlus.includes(sabor)) {
-			setSelectedPlus(selectedPlus.filter(item => item !== sabor));
+	const handleCheckboxChangePlus = (plus: string, product: GeneralProduct) => {
+		if (selectedPlus.includes(plus)) {
+			setSelectedPlus(selectedPlus.filter(item => item !== plus));
 		} else if (selectedPlus.length < product.qdePlus) {
-			setSelectedPlus([...selectedPlus, sabor]);
+			setSelectedPlus([...selectedPlus, plus]);
 		}
 	};
-	const isCheckedPlus = (sabor: string) => selectedPlus.includes(sabor);
-	const isDisabledPlus = (sabor: string, product: GeneralProduct) =>
-		!isCheckedPlus(sabor) && selectedPlus.length >= product.qdePlus;
+	const isCheckedPlus = (plus: string) => selectedPlus.includes(plus);
+	const isDisabledPlus = (plus: string, product: GeneralProduct) =>
+		!isCheckedPlus(plus) && selectedPlus.length >= product.qdePlus;
 
 	//adicionar ao carrinho
 	const addProductToCart = () => {
@@ -72,8 +72,7 @@ const IcecreamProduct = ({ product }: ProductItem) => {
 		// verificar sabores, massa, recheio, casca, cobertura, adicionais,
 		if (
 			selectedSabores.length > 0 &&
-			selectedCoberturas.length > 0 &&
-			selectedPlus.length > 0
+			(selectedCoberturas.length >= 0 || selectedPlus.length >= 0)
 		) {
 			const newProduct = {
 				...product,
@@ -85,76 +84,29 @@ const IcecreamProduct = ({ product }: ProductItem) => {
 				massa: [],
 				casca: []
 			};
-
 			upSertCartItem(newProduct, 1);
-
+			toast({
+				title: 'Adicionado ao Carrinho',
+				description: product.name,
+				action: <ToastAction altText='fechar'>Fechar</ToastAction>
+			});
 			setSelectedSabores([]);
 			setSelectedCoberturas([]);
 			setSelectedPlus([]);
 		} else {
-			alert('Selecione pelo menos um sabor, uma cobertura e um adicional.');
+			toast({
+				variant: 'destructive',
+				title: 'Selecione pelo menos um sabor, cobertura ou adicionais.',
+				description: product.name,
+				action: <ToastAction altText='fechar'>Fechar</ToastAction>
+			});
 		}
-
-		// upSertCartItem(product, 1);
-
-		//toast message
-		toast({
-			title: 'Adicionado ao Carrinho',
-			description: product.name,
-			action: <ToastAction altText='fechar'>Fechar</ToastAction>
-		});
 	};
 
 	return (
 		<div className='flex flex-col gap-4'>
 			<div className='mx-auto flex w-full flex-col gap-4'>
-				<div className='flex w-full flex-col items-center gap-4 rounded-md bg-secondary p-4 md:flex-row'>
-					<div className='relative h-64 w-full rounded-md md:w-1/4'>
-						<Image
-							src={product.imageUrl}
-							alt={product.name}
-							fill
-							sizes='(max-width: 100%) 100%, (max-width: 16rem) 16rem, 16rem'
-							objectFit='cover'
-							className='rounded-md'
-						/>
-					</div>
-					<div className='flex w-full flex-col gap-4 md:w-1/2'>
-						<p className='font-semibold'>{product.name}</p>
-						<p className='text-sm font-medium text-primary'>
-							{product.description}
-						</p>
-						<div className='flex flex-col gap-1'>
-							<h3 className='text-start text-xs font-bold'>Tags</h3>
-							<div className='flex items-center gap-2 md:flex-wrap'>
-								<Badge>#gourmet</Badge>
-								<Badge>#maisVendido</Badge>
-								<Badge>#novidade</Badge>
-							</div>
-						</div>
-						<div className='mt-4 flex items-center justify-center gap-8'>
-							<p className='text-sm font-bold text-muted-foreground line-through'>
-								R$ {product.price.toFixed(2)}
-							</p>
-							<div className='flex items-center justify-center'>
-								<GiftIcon className='text-primary' />
-								<p className='text-2xl font-bold'>
-									R$ {(product.price * 0.95).toFixed(2)}
-								</p>
-							</div>
-						</div>
-					</div>
-					<div className='relative h-64 w-full rounded-md md:w-1/4 hidden md:block'>
-						<Image
-							src={product.imageUrl}
-							alt={product.name}
-							fill
-							sizes='(max-width: 100%) 100%, (max-width: 16rem) 16rem, 16rem'
-							objectFit='cover'
-							className='rounded-md'
-						/>
-					</div>
-				</div>
+				<InfoProduct product={product} />
 
 				<div className='flex w-full gap-4 flex-col md:flex-row rounded-md bg-secondary p-4'>
 					{sabores.length > 0 && (
@@ -256,12 +208,7 @@ const IcecreamProduct = ({ product }: ProductItem) => {
 			</div>
 
 			<div className='flex justify-end w-full mx-auto'>
-				<Button
-					onClick={addProductToCart}
-					type='button'
-					className='w-full md:w-1/4'>
-					Adicionar ao Carrinho
-				</Button>
+				<ButtonAddItemCart onClick={addProductToCart} />
 			</div>
 		</div>
 	);
