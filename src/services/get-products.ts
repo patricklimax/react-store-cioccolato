@@ -1,7 +1,7 @@
 import { products } from "@/data/products";
-import type { Product } from "@/types/product";
+import type { GeneralProduct } from "@/types/product";
 
-export const getProducts = async (): Promise<Product[]> => {
+export const getProducts = async (): Promise<GeneralProduct[]> => {
   return new Promise((resolve, reject) => {
     return setTimeout(() => {
       resolve(products);
