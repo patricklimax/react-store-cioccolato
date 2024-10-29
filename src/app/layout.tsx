@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 	description: 'Seu melhor sabor de chocolate. Experimente!'
 };
 
-export default function RootLayout({
-	children
-}: Readonly<{
+type LayoutProps = {
 	children: React.ReactNode;
-}>) {
+};
+
+export default function RootLayout({ children }: Readonly<LayoutProps>) {
 	return (
 		<html
 			lang='pt-BR'

@@ -1,3 +1,4 @@
+import { Logotipo } from '@/components/logo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { productCategoryCard } from '@/data/product-category-card';
 import Image from 'next/image';
@@ -20,31 +21,26 @@ const AboutEnterprise = () => {
 			</h1>
 
 			<div className='flex flex-col gap-4 md:flex-row'>
-				<div className='grid grid-cols-2 items-center justify-center md:grid-cols-3 gap-4 flex-1'>
+				<div className='grid grid-cols-2 items-stretch justify-stretch md:grid-cols-3 gap-4 w-full md:w-1/2'>
 					{productCategoryCard
 						.filter(item => item.isCard === true)
 						.map(item => (
-							<div
-								key={item.id}
-								className='rounded-md relative h-32 md:h-40 lg:h-48 w-full'>
+							<div key={item.id}>
 								<Image
 									src={item.imageUrl}
 									alt={item.name}
-									fill
-									objectFit='cover'
-									className='rounded-md'
+									height={140}
+									width={140}
+									quality={100}
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+									className='w-full rounded-md'
 								/>
 							</div>
 						))}
 				</div>
-				<div className='flex flex-col gap-4 bg-secondary flex-1 p-2 rounded-md'>
-					<div className='rounded-md relative h-16'>
-						<Image
-							src='/images/logo/logo.png'
-							alt='Logo da empresa'
-							fill
-							objectFit='contain'
-						/>
+				<div className='flex flex-col gap-4 bg-secondary w-full md:w-1/2 p-2 rounded-md'>
+					<div className='flex items-center justify-center'>
+						<Logotipo />
 					</div>
 
 					<Tabs defaultValue='about'>
