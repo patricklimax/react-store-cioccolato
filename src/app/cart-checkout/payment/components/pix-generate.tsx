@@ -27,9 +27,9 @@ const PixGenerate = () => {
 	// Gerar um código de pagamento via PIX
 	const generatePixCode = () => {
 		const pix = createStaticPix({
-			merchantName: 'PATRICK DE ASSIS LIMA',
-			merchantCity: 'Sao Paulo',
-			pixKey: '07d522a0-ebfb-44a5-a66d-9ed0a50e756a',
+			merchantName: process.env.NEXT_PUBLIC_NAME as string,
+			merchantCity: process.env.NEXT_PUBLIC_CITY as string,
+			pixKey: process.env.NEXT_PUBLIC_PIX_KEY as string,
 			transactionAmount: halfOrderValue,
 			isTransactionUnique: true
 		});
