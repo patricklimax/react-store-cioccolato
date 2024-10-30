@@ -19,7 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-export const formSchema = z.object({
+const formSchema = z.object({
 	paymentMethod: z.string().min(1, 'Você deve selecionar uma opção')
 });
 
@@ -69,7 +69,7 @@ const PaymentPage = () => {
 										<FormLabel>Escolha uma opção:</FormLabel>
 										<FormControl>
 											<RadioGroup
-												defaultValue={paymentMethod}
+												value={form.watch('paymentMethod')}
 												onValueChange={value =>
 													form.setValue('paymentMethod', value)
 												}
